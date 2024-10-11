@@ -10,6 +10,7 @@ class Player {
     this.height = size
     this.velocity = velocity
     this.isOnGround = false
+    this.image = new Image()
   }
 
   draw(c) {
