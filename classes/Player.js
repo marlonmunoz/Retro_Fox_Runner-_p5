@@ -10,15 +10,43 @@ class Player {
     this.height = size
     this.velocity = velocity
     this.isOnGround = false
+    this.isImageLoaded = false
     this.image = new Image()
+    this.image.onload = () => {
+      this.isImageLoaded = true
+    }
+    this.image.src = './images/player.png'
+    this.elapsedTime = 0
+    this.currentFrame = 0
+    
   }
 
   draw(c) {
     // Red square debug code
     c.fillStyle = 'rgba(255, 0, 0, 0.5)'
     c.fillRect(this.x, this.y, this.width, this.height)
-  }
 
+    if (this.isImageLoaded === true) {
+      const cropbox = {
+        x: 0,
+        y: 0,
+        width: 32,
+        height: 32,
+      }
+      // 9 arguments needed to crop image from spritesheet
+      c.drawImage(
+        this.image, 
+        cropbox.x, 
+        cropbox.y, 
+        cropbox.width, 
+        cropbox.height, 
+        this.x, 
+        this.y, 
+        this.width, 
+        this.height,
+      )
+    }
+  }
   update(deltaTime, collisionBlocks) {
     if (!deltaTime) return
     this.applyGravity(deltaTime)
