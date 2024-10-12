@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 1024 * dpr
-canvas.height = 576 * dpr
+canvas.width = 2424 * dpr
+canvas.height = 1176 * dpr
 
 
 const layersData = {
@@ -149,7 +149,7 @@ const camera = {
 // const gameMapHeight = 1000;
 
 // First scroll post
-const SCROLL_POST_RIGHT = 500
+const SCROLL_POST_RIGHT = 550
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 280
 
