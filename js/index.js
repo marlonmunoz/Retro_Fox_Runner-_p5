@@ -5,6 +5,7 @@ const dpr = window.devicePixelRatio || 1
 canvas.width = 1024 * dpr
 canvas.height = 576 * dpr
 
+
 const layersData = {
    l_Sea_Sky: l_Sea_Sky,
    l_Mountains: l_Mountains,
@@ -18,9 +19,9 @@ const layersData = {
 };
 
 const tilesets = {
-  l_Sea_Sky: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_Sea_Sky: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Mountains: { imageUrl: './images/decorations.png', tileSize: 16 },
-  l_Home_Plus_Trees: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_Home_Plus_Trees: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
@@ -144,8 +145,8 @@ const camera = {
 }
 
 
-const gameMapWidth = 2000; // Example width of the game map
-const gameMapHeight = 1000;
+// const gameMapWidth = 20000; // Example width of the game map
+// const gameMapHeight = 1000;
 
 
 const SCROLL_POST_RIGHT = 700
