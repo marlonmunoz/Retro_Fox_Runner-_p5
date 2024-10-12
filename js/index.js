@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2124 * dpr
-canvas.height = 1040 * dpr
+canvas.width = 2924 * dpr
+canvas.height = 1340 * dpr
 
 
 const layersData = {
@@ -191,9 +191,9 @@ function animate(backgroundCanvas) {
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
-  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   c.restore()
 
   requestAnimationFrame(() => animate(backgroundCanvas))
