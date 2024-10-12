@@ -19,9 +19,9 @@ const layersData = {
 };
 
 const tilesets = {
-  // l_Sea_Sky: { imageUrl: './images/decorations.png', tileSize: 16 },
+  l_Sea_Sky: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Mountains: { imageUrl: './images/decorations.png', tileSize: 16 },
-  // l_Home_Plus_Trees: { imageUrl: './images/decorations.png', tileSize: 16 },
+  l_Home_Plus_Trees: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
@@ -148,10 +148,13 @@ const camera = {
 // const gameMapWidth = 20000; // Example width of the game map
 // const gameMapHeight = 1000;
 
-
-const SCROLL_POST_RIGHT = 700
+// First scroll post
+const SCROLL_POST_RIGHT = 500
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 280
+
+
+
 
 function animate(backgroundCanvas) {
   // Calculate delta time
@@ -165,9 +168,7 @@ function animate(backgroundCanvas) {
 
 
 
-
-
-  // Track scroll post distance
+  // Track scroll post distance 01
   if (player.x > SCROLL_POST_RIGHT) {
     const scrollPostDistance = player.x - SCROLL_POST_RIGHT
     camera.x = scrollPostDistance 
@@ -180,6 +181,8 @@ function animate(backgroundCanvas) {
     const scrollPostDistance = player.y - SCROLL_POST_BOTTOM
     camera.y = -scrollPostDistance 
   }
+
+
   
   // Render scene
   c.save()
@@ -188,9 +191,9 @@ function animate(backgroundCanvas) {
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
-  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   c.restore()
 
   requestAnimationFrame(() => animate(backgroundCanvas))
