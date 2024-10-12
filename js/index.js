@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2424 * dpr
-canvas.height = 1176 * dpr
+canvas.width = 2124 * dpr
+canvas.height = 1040 * dpr
 
 
 const layersData = {
