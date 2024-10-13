@@ -13,4 +13,4 @@ Game is still under construction. But you can preview and play by typing this co
 - `d` = Fordward
 
 ## WARNINGS
-- The game has a glitch rendering that won't allow the game to progress. But you can get a taste of how the game turn to be. Give it a try.
+- The game has a glitch rendering that won't allow the game to progress. Ny recommendations as to how I can go about debugging this rendering issue, will be greatly welcome.
