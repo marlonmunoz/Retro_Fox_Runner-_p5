@@ -5,10 +5,15 @@ const dpr = window.devicePixelRatio || 1
 canvas.width = 2924 * dpr
 canvas.height = 1340 * dpr
 
+const seaSkyLayerData = {
+  l_Sea_Sky: l_Sea_Sky,
+}
+
+const mointainsLayerData = {
+  l_Mountains: l_Mountains,
+}
 
 const layersData = {
-   l_Sea_Sky: l_Sea_Sky,
-   l_Mountains: l_Mountains,
    l_Home_Plus_Trees: l_Home_Plus_Trees,
    l_BG_Tiles: l_BG_Tiles,
    l_Ground: l_Ground,
@@ -83,7 +88,7 @@ const renderLayer = (tilesData, tilesetImage, tileSize, context) => {
   })
 }
 
-const renderStaticLayers = async () => {
+const renderStaticLayers = async (layersData) => {
   const offscreenCanvas = document.createElement('canvas')
   offscreenCanvas.width = canvas.width
   offscreenCanvas.height = canvas.height
@@ -152,8 +157,12 @@ const camera = {
 const SCROLL_POST_RIGHT = 550
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 280
+const SCROLL_POST_LEFT = 6570
 
 
+
+let seaSkyBackground = null
+let mountainsBackground = null
 
 
 function animate(backgroundCanvas) {
@@ -166,14 +175,13 @@ function animate(backgroundCanvas) {
   player.handleInput(keys)
   player.update(deltaTime, collisionBlocks)
 
-
-
   // Track scroll post distance 01
   if (player.x > SCROLL_POST_RIGHT) {
-    const scrollPostDistance = player.x - SCROLL_POST_RIGHT
+    const scrollPostDistance = player.x - SCROLL_POST_RIGHT;
     camera.x = scrollPostDistance 
-  }
-  if (player.y < SCROLL_POST_TOP && camera.y > 0) {
+  } 
+  
+  if (player.y < SCROLL_POST_TOP && camera.y > 0) {  // && camera.y > 0, ommit this condition to allow camera to go below 0
     const scrollPostDistance = SCROLL_POST_TOP - player.y
     camera.y = scrollPostDistance 
   }
@@ -181,17 +189,19 @@ function animate(backgroundCanvas) {
     const scrollPostDistance = player.y - SCROLL_POST_BOTTOM
     camera.y = -scrollPostDistance 
   }
-
-
+  
   
   // Render scene
   c.save()
   c.scale(dpr, dpr)
   c.translate(-camera.x, camera.y) 
   c.clearRect(0, 0, canvas.width, canvas.height)
+  c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect
+  c.drawImage(mountainsBackgroundCanvas, camera.x * 0.16, 0)  // 0.16 is the parallax effect
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
   // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
   // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   c.restore()
@@ -202,7 +212,9 @@ function animate(backgroundCanvas) {
 
 const startRendering = async () => {
   try {
-    const backgroundCanvas = await renderStaticLayers()
+    seaSkyBackgroundCanvas = await renderStaticLayers(seaSkyLayerData)
+    mountainsBackgroundCanvas = await renderStaticLayers(mointainsLayerData)
+    const backgroundCanvas = await renderStaticLayers(layersData)
     if (!backgroundCanvas) {
       console.error('Failed to create the background canvas')
       return
