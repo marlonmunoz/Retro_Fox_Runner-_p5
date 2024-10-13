@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2924 * dpr
-canvas.height = 1340 * dpr
+canvas.width = 2924 * dpr // 2924
+canvas.height = 1640 * dpr // 1340
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
