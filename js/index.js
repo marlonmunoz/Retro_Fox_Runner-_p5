@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2924 * dpr // 2924
-canvas.height = 1640 * dpr // 1340
+canvas.width = 1024 * dpr // 2924
+canvas.height = 540 * dpr // 1340
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -30,8 +30,8 @@ const tilesets = {
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
-  l_Rewards: { imageUrl: './images/decorations.png', tileSize: 16 },
-  l_enemies: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_Rewards: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_enemies: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Collitions: { imageUrl: './images/tileset.png', tileSize: 16 },
 };
 
@@ -118,6 +118,9 @@ const renderStaticLayers = async (layersData) => {
   return offscreenCanvas
 }
 
+// ===========================================================================
+// ===========================================================================
+
 // END - Tile setup
 
 // Change xy coordinates to move player's default position
@@ -140,8 +143,6 @@ const keys = {
   },
 }
 
-// ===========================================================================
-// ===========================================================================
 
 let lastTime = performance.now()
 const camera = {
@@ -149,18 +150,11 @@ const camera = {
   y: 0,
 }
 
-
-// const gameMapWidth = 20000; // Example width of the game map
-// const gameMapHeight = 1000;
-
 // First scroll post
-const SCROLL_POST_RIGHT = 550
+const SCROLL_POST_RIGHT = 512
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 280
-const SCROLL_POST_LEFT = 6570
-
-
-
+// const SCROLL_POST_LEFT = 6570 
 let seaSkyBackground = null
 let mountainsBackground = null
 
@@ -200,10 +194,10 @@ function animate(backgroundCanvas) {
   c.drawImage(mountainsBackgroundCanvas, camera.x * 0.16, 0)  // 0.16 is the parallax effect
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
-  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
-  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  // c.fillRect(SCROLL_POST_LEFT, 50, 10, 1 00)
   c.restore()
 
   requestAnimationFrame(() => animate(backgroundCanvas))
