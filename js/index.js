@@ -3,7 +3,7 @@ const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
 canvas.width = 1024 * dpr // 2924
-canvas.height = 540 * dpr // 1340
+canvas.height = 576 * dpr // 1340
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -128,7 +128,12 @@ const player = new Player({
   x: 100,
   y: 100,
   size: 32,
-  velocity: { x: 0, y: 0 },
+})
+
+const opossum = new Opossum({
+  x: 190,
+  y: 100,
+  size: 32,
 })
 
 const keys = {
@@ -169,9 +174,16 @@ function animate(backgroundCanvas) {
   player.handleInput(keys)
   player.update(deltaTime, collisionBlocks)
 
+  // Update Opossum Position
+  opossum.update(deltaTime, collisionBlocks)
+
+  if (checkCollitions(player, opossum)) {
+    player.velocity.y = -200
+  }
+
   // Track scroll post distance 01
   if (player.x > SCROLL_POST_RIGHT) {
-    const scrollPostDistance = player.x - SCROLL_POST_RIGHT;
+    const scrollPostDistance = player.x - SCROLL_POST_RIGHT  
     camera.x = scrollPostDistance 
   } 
   
@@ -194,6 +206,7 @@ function animate(backgroundCanvas) {
   c.drawImage(mountainsBackgroundCanvas, camera.x * 0.16, 0)  // 0.16 is the parallax effect
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
+  opossum.draw(c)
   c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)

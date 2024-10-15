@@ -1,9 +1,9 @@
-const OPOSSUM_X_VELOCITY = 200
+const OPOSSUM_X_VELOCITY = -20
 const OPOSSUM_JUMP_POWER = 250
 const OPOSSUM_GRAVITY = 580
 
 class Opossum {
-  constructor({ x, y, size, velocity = { x: 0, y: 0 } }) {
+  constructor({ x, y, size, velocity = { x: OPOSSUM_X_VELOCITY, y: 0 } }, turningDistance = 100) {
     this.x = x
     this.y = y
     this.width = size
@@ -23,7 +23,7 @@ class Opossum {
         x: 0,
         y: 0,
         width: 36,
-        height: 32,
+        height: 28,
         frames: 6,
       },
     }
@@ -32,10 +32,11 @@ class Opossum {
     this.hitbox = {
       x: 0,
       y: 0,
-      width: 20,
+      width: 30,
       height: 23,
     }
-    
+    this.distanceTravelled = 0
+    this.turningDistance = turningDistance
   }
 
   draw(c) {
@@ -43,7 +44,7 @@ class Opossum {
     // c.fillStyle = 'rgba(255, 0, 0, 0.5)'
     // c.fillRect(this.x, this.y, this.width, this.height)
 
-    // Hitbox debug code
+    // // Hitbox debug code
     // c.fillStyle = 'rgba(0, 0, 255, 0.5)'
     // c.fillRect(
     //   this.hitbox.x, 
@@ -56,7 +57,7 @@ class Opossum {
       let xScale = 1
       let x = this.x
 
-      if (this.facing === 'left') {
+      if (this.facing === 'right') {
         xScale = -1
         x = -this.x - this.width
       }
@@ -91,7 +92,7 @@ class Opossum {
   }
 
   // Update hitbox position
-  this.hitbox.x = this.x + 4
+  this.hitbox.x = this.x 
   this.hitbox.y = this.y + 9
 
     this.applyGravity(deltaTime)
@@ -132,8 +133,14 @@ class Opossum {
   }
 
   updateHorizontalPosition(deltaTime) {
+    if (Math.abs(this.distanceTravelled) > this.turningDistance) { // this conditional makes opossum mode from left to right
+      this.velocity.x = -this.velocity.x
+      this.distanceTravelled = 0
+    }
+
     this.x += this.velocity.x * deltaTime
     this.hitbox.x += this.velocity.x * deltaTime
+    this.distanceTravelled += this.velocity.y * deltaTime
   }
 
   updateVerticalPosition(deltaTime) {
@@ -170,14 +177,14 @@ class Opossum {
         // Check collision while player is going left
         if (this.velocity.x < -0) {
           this.hitbox.x = collisionBlock.x + collisionBlock.width + buffer
-          this.x = this.hitbox.x -4
+          this.x = this.hitbox.x 
           break
         }
 
         // Check collision while player is going right
         if (this.velocity.x > 0) {
           this.hitbox.x = collisionBlock.x - this.hitbox.width - buffer
-          this.x = this.hitbox.x -4
+          this.x = this.hitbox.x 
           break
         }
       }
