@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 1024 * dpr // 2924
-canvas.height = 576 * dpr // 1340
+canvas.width = 2924 * dpr // 2924
+canvas.height = 1540 * dpr // 1340
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -219,9 +219,9 @@ let camera = {
 }
 
 // First scroll post
-const SCROLL_POST_RIGHT = 512
+const SCROLL_POST_RIGHT = 240
 const SCROLL_POST_TOP = 100
-const SCROLL_POST_BOTTOM = 280
+const SCROLL_POST_BOTTOM = 200
 const SCROLL_POST_LEFT = 6570 
 let seaSkyBackground = null
 let mountainsBackground = null
@@ -456,12 +456,16 @@ function animate(backgroundCanvas) {
       //remove a gem from the game
       gems.splice(i, 1)
       gemCount++
+      if (gems.length === 0) {
+        console.log('YOU WIN');
+        
+      }
     }
   }
   
 
   // Track scroll post distance 01
-  if (player.x > SCROLL_POST_RIGHT) {
+  if (player.x > SCROLL_POST_RIGHT && player.x < 7488) {
     const scrollPostDistance = player.x - SCROLL_POST_RIGHT  
     camera.x = scrollPostDistance 
   } 
@@ -478,7 +482,7 @@ function animate(backgroundCanvas) {
   
   // Render scene
   c.save()
-  c.scale(dpr, dpr)
+  c.scale(dpr + 1, dpr + 1)
   c.translate(-camera.x, camera.y) 
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect
@@ -509,11 +513,11 @@ function animate(backgroundCanvas) {
   // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
-  // c.fillRect(SCROLL_POST_LEFT, 50, 10, 1 00)
+  // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
   c.restore()
   
   c.save()
-  c.scale(dpr, dpr)
+  c.scale(dpr + 1, dpr + 1)
   for (let i = hearts.length - 1; i >= 0; i--) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
     heart.draw(c)
