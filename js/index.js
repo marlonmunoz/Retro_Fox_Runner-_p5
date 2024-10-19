@@ -18,7 +18,7 @@ const layersData = {
    l_BG_Tiles: l_BG_Tiles,
    l_Ground: l_Ground,
    l_embelishments: l_embelishments,
-   l_Rewards: l_Rewards,
+   l_Gems: l_Gems,
    l_enemies: l_enemies,
    l_Collitions: l_Collitions,
 };
@@ -30,7 +30,7 @@ const tilesets = {
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
-  l_Rewards: { imageUrl: './images/decorations.png', tileSize: 16 },
+  l_Gems: { imageUrl: './images/decorations.png', tileSize: 16 },
   // l_enemies: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Collitions: { imageUrl: './images/tileset.png', tileSize: 16 },
 };
