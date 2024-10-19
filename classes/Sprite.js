@@ -20,7 +20,7 @@ class Sprite {
     this.image = new Image()
     this.image.onload = () => {
       this.isImageLoaded = true
-      console.log('Image Loaded Success');
+    //   console.log('Image Loaded Success');
     }
     this.image.src = imageSrc
     this.elapsedTime = 0
@@ -62,7 +62,7 @@ class Sprite {
       )
       c.restore()
     } else {
-        console.log('Image not loaded yet');
+        // console.log('Image not loaded yet');
     }
   }
   update(deltaTime) {
