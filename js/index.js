@@ -124,7 +124,7 @@ const renderStaticLayers = async (layersData) => {
 // END - Tile setup
 
 // Change xy coordinates to move player's default position
-const player = new Player({
+let player = new Player({
   x: 100,
   y: 100,
   size: 32,
@@ -132,7 +132,7 @@ const player = new Player({
 
 
 
-const opossums = [ 
+let opossums = [ 
   new Opossum({   // add as many opossums as you want 
     x: 190,
     y: 100,
@@ -150,7 +150,54 @@ const opossums = [
 
 ]
 
-const sprites = []
+let sprites = []
+//=================================================================================
+let hearts = [ 
+  new Heart ({
+    x: 10, 
+    y: 10, 
+    width: 21, 
+    height: 18, 
+    imageSrc: './images/hearts.png', 
+    spriteCropbox: {
+      x: 0,
+      y: 0,
+      width: 21,
+      height: 18,
+      frames: 6,
+    },
+  }),
+  new Heart ({
+    x: 33, 
+    y: 10, 
+    width: 21, 
+    height: 18, 
+    imageSrc: './images/hearts.png', 
+    spriteCropbox: {
+      x: 0,
+      y: 0,
+      width: 21,
+      height: 18,
+      frames: 6,
+    },
+  }),
+  new Heart ({
+    x: 56, 
+    y: 10, 
+    width: 21, 
+    height: 18, 
+    imageSrc: './images/hearts.png', 
+    spriteCropbox: {
+      x: 0,
+      y: 0,
+      width: 21,
+      height: 18,
+      frames: 6,
+    },
+  })
+]
+//=================================================================================
+
 
 const keys = {
   w: {
@@ -166,7 +213,7 @@ const keys = {
 
 
 let lastTime = performance.now()
-const camera = {
+let camera = {
   x: 0,
   y: 0,
 }
@@ -178,6 +225,80 @@ const SCROLL_POST_BOTTOM = 280
 // const SCROLL_POST_LEFT = 6570 
 let seaSkyBackground = null
 let mountainsBackground = null
+
+// GAME RESET
+function init() { 
+  player = new Player({
+    x: 100,
+    y: 100,
+    size: 32,
+  })
+  opossums = [ 
+    new Opossum({   // add as many opossums as you want 
+      x: 190,
+      y: 100,
+      size: 32,
+      width: 36,
+      height: 28,
+    }),
+    new Opossum({   // add as many opossums as you want 
+      x: 750,
+      y: 400,
+      size: 32,
+      width: 36,
+      height: 28,
+    }),
+  ]
+  sprites = []
+  hearts = [ 
+    new Heart ({
+      x: 10, 
+      y: 10, 
+      width: 21, 
+      height: 18, 
+      imageSrc: './images/hearts.png', 
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
+    }),
+    new Heart ({
+      x: 33, 
+      y: 10, 
+      width: 21, 
+      height: 18, 
+      imageSrc: './images/hearts.png', 
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
+    }),
+    new Heart ({
+      x: 56, 
+      y: 10, 
+      width: 21, 
+      height: 18, 
+      imageSrc: './images/hearts.png', 
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
+    })
+  ]
+  camera = {
+    x: 0,
+    y: 0,
+  }
+}
 
 
 function animate(backgroundCanvas) {
@@ -218,7 +339,19 @@ function animate(backgroundCanvas) {
           }),
         )
         opossums.splice(i, 1) // this will remove the enemies when you jump on top
-      } else if (collisionDirection === 'left' || collisionDirection === 'right') {
+      } else if (
+        collisionDirection === 'left' || 
+        collisionDirection === 'right'
+      ) {
+
+        const fullHearts = hearts.filter((heart) => {
+          return !heart.depleted
+        })
+        if (!player.isInvincible && fullHearts.length > 0){
+          fullHearts[fullHearts.length -1].depleted = true
+        } else if (fullHearts.length === 0) {
+          init()
+        }
         player.setIsInvincible()
       }
     }
@@ -261,20 +394,31 @@ function animate(backgroundCanvas) {
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
 
+  // opossums = enemies
   for (let i = opossums.length - 1; i >= 0; i--) {
     const opossum = opossums[i]
     opossum.draw(c)
   }
-    
+  
+  // explotion on enemy deaths
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
     sprite.draw(c)
   }
 
+  // hearts displayed on upperleft screen
   // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 1 00)
+  c.restore()
+  
+  c.save()
+  c.scale(dpr, dpr)
+  for (let i = hearts.length - 1; i >= 0; i--) {
+    const heart = hearts [i] // this will grab only one sprite and store it into the array
+    heart.draw(c)
+  }
   c.restore()
 
   requestAnimationFrame(() => animate(backgroundCanvas))
