@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2924 * dpr // 2924
-canvas.height = 1540 * dpr // 1340
+canvas.width = 1024 * dpr // 2924
+canvas.height = 576 * dpr // 1540
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -198,7 +198,7 @@ let hearts = [
 ]
 //=================================================================================
 
-
+const jumpSound = new Audio('./sound/jump.mp3');
 const keys = {
   w: {
     pressed: false,

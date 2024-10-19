@@ -1,6 +1,11 @@
 window.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'w':
+      // player.jump()
+      if (!keys.w.pressed) {
+        jumpSound.currentTime = 0
+        jumpSound.play();
+      }
       player.jump()
       keys.w.pressed = true
       break
@@ -15,6 +20,11 @@ window.addEventListener('keydown', (event) => {
 
 window.addEventListener('keyup', (event) => {
   switch (event.key) {
+    case 'w':
+      keys.w.pressed = false;
+      jumpSound.pause();
+      jumpSound.currentTime = 0;
+      break;
     case 'a':
       keys.a.pressed = false
       break
