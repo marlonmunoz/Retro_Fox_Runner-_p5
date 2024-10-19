@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 1024 * dpr // 2924
-canvas.height = 576 * dpr // 1540
+canvas.width = 2924 * dpr // 2924
+canvas.height = 1576 * dpr // 1540
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -242,6 +242,13 @@ let gemUI = new Sprite({
 })
 let gemCount = 0
 
+const backgroundMusic = new Audio('./sound/digestive-biscuit.mp3')
+backgroundMusic.loop = true;
+
+function startGame() {
+  init();
+  startRendering();
+}
 
 // GAME RESET
 function init() {
@@ -369,6 +376,8 @@ function animate(backgroundCanvas) {
   const deltaTime = (currentTime - lastTime) / 1000
   lastTime = currentTime
 
+  const  enemyDeathSound = new Audio('./sound/enemy_death.mp3')
+
   
 
   // Update player position
@@ -402,6 +411,7 @@ function animate(backgroundCanvas) {
             },
           }),
         )
+        enemyDeathSound.play()
         opossums.splice(i, 1) // this will remove the enemies when you jump on top
       } else if (
         collisionDirection === 'left' || 
@@ -431,9 +441,9 @@ function animate(backgroundCanvas) {
     }
   }
 
-  // gems
+  // gems sound
   const gemCollectionSound = new Audio('./sound/gem_coin.mp3')
-
+  // gems 
   for (let i = gems.length - 1; i >= 0; i--) {
     const gem = gems [i] // this will grab only one sprite and store it into the array
     gem.update(deltaTime)
