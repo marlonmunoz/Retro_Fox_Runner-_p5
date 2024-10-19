@@ -30,7 +30,7 @@ const tilesets = {
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
-  // l_Rewards: { imageUrl: './images/decorations.png', tileSize: 16 },
+  l_Rewards: { imageUrl: './images/decorations.png', tileSize: 16 },
   // l_enemies: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Collitions: { imageUrl: './images/tileset.png', tileSize: 16 },
 };
@@ -130,11 +130,27 @@ const player = new Player({
   size: 32,
 })
 
-const opossum = new Opossum({
-  x: 190,
-  y: 100,
-  size: 32,
-})
+
+
+const opossums = [ 
+  new Opossum({   // add as many opossums as you want 
+    x: 190,
+    y: 100,
+    size: 32,
+    width: 36,
+    height: 28,
+  }),
+  new Opossum({   // add as many opossums as you want 
+    x: 750,
+    y: 400,
+    size: 32,
+    width: 36,
+    height: 28,
+  }),
+
+]
+
+const sprites = []
 
 const keys = {
   w: {
@@ -175,11 +191,43 @@ function animate(backgroundCanvas) {
   player.update(deltaTime, collisionBlocks)
 
   // Update Opossum Position
-  opossum.update(deltaTime, collisionBlocks)
+  for (let i = opossums.length - 1; i >= 0; i--) {
+    const opossum = opossums[i]
+    opossum.update(deltaTime, collisionBlocks)
 
-  if (checkCollitions(player, opossum)) {
-    player.velocity.y = -200
+    // Jump on an enemy
+    if (checkCollitions(player, opossum)) {
+      player.velocity.y = -200
+      sprites.push(
+        new Sprite({
+          x: opossum.x, 
+          y: opossum.y, 
+          width: 32, 
+          height: 32, 
+          imageSrc: './images/enemy-death.png',
+          spriteCropbox: {
+            x: 0,
+            y: 0,
+            width:40,
+            height: 41,
+            frames: 6,
+          },
+        }),
+      )
+      opossums.splice(i, 1) // this will remove the enemies when you jump on top
+    }
   }
+
+  //for loop iterate backwards
+  for (let i = sprites.length - 1; i >= 0; i--) {
+    const sprite = sprites [i] // this will grab only one sprite and store it into the array
+    sprite.update(deltaTime)
+
+    if (sprite.iteration === 1) {
+      sprites.splice(i, 1) // find the index, in which we want to cut out, and cut out one instance
+    }
+  }
+  
 
   // Track scroll post distance 01
   if (player.x > SCROLL_POST_RIGHT) {
@@ -206,10 +254,20 @@ function animate(backgroundCanvas) {
   c.drawImage(mountainsBackgroundCanvas, camera.x * 0.16, 0)  // 0.16 is the parallax effect
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
-  opossum.draw(c)
-  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+
+  for (let i = opossums.length - 1; i >= 0; i--) {
+    const opossum = opossums[i]
+    opossum.draw(c)
+  }
+    
+  for (let i = sprites.length - 1; i >= 0; i--) {
+    const sprite = sprites [i] // this will grab only one sprite and store it into the array
+    sprite.draw(c)
+  }
+
+  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 1 00)
   c.restore()
 
