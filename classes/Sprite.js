@@ -6,12 +6,19 @@ class Sprite {
     height, 
     imageSrc, 
     spriteCropbox = {
-    x: 0,
-    y: 0,
-    width: 36,
-    height: 28,
-    frames: 6,
-  } }) {
+      x: 0,
+      y: 0,
+      width: 36,
+      height: 28,
+      frames: 6,
+    }, 
+    hitbox = {
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    }
+  }) {
     this.x = x
     this.y = y
     this.width = width
@@ -28,6 +35,7 @@ class Sprite {
 
     this.currentSprite = spriteCropbox
     this.iteration = 0
+    this.hitbox = hitbox
   }
 
   draw(c) {

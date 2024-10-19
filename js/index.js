@@ -18,7 +18,7 @@ const layersData = {
    l_BG_Tiles: l_BG_Tiles,
    l_Ground: l_Ground,
    l_embelishments: l_embelishments,
-   l_Gems: l_Gems,
+  //  l_Gems: l_Gems,
    l_enemies: l_enemies,
    l_Collitions: l_Collitions,
 };
@@ -222,16 +222,77 @@ let camera = {
 const SCROLL_POST_RIGHT = 512
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 280
-// const SCROLL_POST_LEFT = 6570 
+const SCROLL_POST_LEFT = 6570 
 let seaSkyBackground = null
 let mountainsBackground = null
-
+let gems = []
+let gemUI = new Sprite({
+  x: 13, 
+  y: 36, 
+  width: 15, 
+  height: 13, 
+  imageSrc: './images/gem.png',
+  spriteCropbox: {
+    x: 0,
+    y: 0,
+    width:15,
+    height: 13,
+    frames: 5,
+  },
+})
+let gemCount = 0
 // GAME RESET
-function init() { 
+function init() {
+  gems = []
+  gemCount = 0
+  gemUI = new Sprite({
+    x: 13, 
+    y: 36, 
+    width: 15, 
+    height: 13, 
+    imageSrc: './images/gem.png',
+    spriteCropbox: {
+      x: 0,
+      y: 0,
+      width:15,
+      height: 13,
+      frames: 5,
+    },
+  })
+  l_Gems.forEach((row, y) => {
+    row.forEach((symbol, x) => {
+      if (symbol === 18) {
+        gems.push(
+          new Sprite({
+            x: x * 16, 
+            y: y * 16, 
+            width: 15, 
+            height: 13, 
+            imageSrc: './images/gem.png',
+            spriteCropbox: {
+              x: 0,
+              y: 0,
+              width:15,
+              height: 13,
+              frames: 5,
+            },
+            hitbox: {
+              x: x * 16, 
+              y: y * 16, 
+              width: 15, 
+              height: 13,
+            }
+          }),
+        )
+      } 
+    })
+  }) 
+
   player = new Player({
     x: 100,
     y: 100,
     size: 32,
+    // velocity: {x: 0, y: 0},
   })
   opossums = [ 
     new Opossum({   // add as many opossums as you want 
@@ -357,13 +418,44 @@ function animate(backgroundCanvas) {
     }
   }
 
-  //for loop iterate backwards
+  //for loop iterate backwards [explotion enemy death sprite]
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
     sprite.update(deltaTime)
 
     if (sprite.iteration === 1) {
       sprites.splice(i, 1) // find the index, in which we want to cut out, and cut out one instance
+    }
+  }
+
+  // gems
+  for (let i = gems.length - 1; i >= 0; i--) {
+    const gem = gems [i] // this will grab only one sprite and store it into the array
+    gem.update(deltaTime)
+
+    // THIS IS WHERE WE ARE COLLECTING GEMS
+    const collisionDirection = checkCollitions(player, gem)
+    if (collisionDirection) {
+      // create an item feedback animation
+      sprites.push(
+        new Sprite({
+          x: gem.x - 8, 
+          y: gem.y - 8, 
+          width: 32, 
+          height: 32, 
+          imageSrc: './images/item-feedback.png',
+          spriteCropbox: {
+            x: 0,
+            y: 0,
+            width:32,
+            height: 32,
+            frames: 5,
+          },
+        }),
+      )
+      //remove a gem from the game
+      gems.splice(i, 1)
+      gemCount++
     }
   }
   
@@ -406,6 +498,13 @@ function animate(backgroundCanvas) {
     sprite.draw(c)
   }
 
+  // gems FX
+  for (let i = gems.length - 1; i >= 0; i--) {
+    const gem = gems [i] 
+    gem.draw(c)
+  }
+
+  
   // hearts displayed on upperleft screen
   // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
@@ -419,6 +518,8 @@ function animate(backgroundCanvas) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
     heart.draw(c)
   }
+  gemUI.draw(c)
+  c.fillText(gemCount, 33, 46)
   c.restore()
 
   requestAnimationFrame(() => animate(backgroundCanvas))
@@ -441,4 +542,5 @@ const startRendering = async () => {
   }
 }
 
+init()
 startRendering()
