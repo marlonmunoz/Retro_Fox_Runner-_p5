@@ -241,6 +241,8 @@ let gemUI = new Sprite({
   },
 })
 let gemCount = 0
+
+
 // GAME RESET
 function init() {
   gems = []
@@ -361,12 +363,13 @@ function init() {
   }
 }
 
-
 function animate(backgroundCanvas) {
   // Calculate delta time
   const currentTime = performance.now()
   const deltaTime = (currentTime - lastTime) / 1000
   lastTime = currentTime
+
+  
 
   // Update player position
   player.handleInput(keys)
@@ -429,6 +432,8 @@ function animate(backgroundCanvas) {
   }
 
   // gems
+  const gemCollectionSound = new Audio('./sound/gem_coin.mp3')
+
   for (let i = gems.length - 1; i >= 0; i--) {
     const gem = gems [i] // this will grab only one sprite and store it into the array
     gem.update(deltaTime)
@@ -456,6 +461,7 @@ function animate(backgroundCanvas) {
       //remove a gem from the game
       gems.splice(i, 1)
       gemCount++
+      gemCollectionSound.play()
       if (gems.length === 0) {
         console.log('YOU WIN');
         
