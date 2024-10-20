@@ -91,9 +91,14 @@ const renderLayer = (tilesData, tilesetImage, tileSize, context) => {
 
 const renderStaticLayers = async (layersData) => {
   const offscreenCanvas = document.createElement('canvas')
+  const MAP_COLS = 500
+  const MAP_WIDTH = 500 * 16
+  offscreenCanvas.width = MAP_WIDTH
+  offscreenCanvas.height = MAP_COLS
   offscreenCanvas.width = canvas.width
   offscreenCanvas.height = canvas.height
   const offscreenContext = offscreenCanvas.getContext('2d')
+
 
   for (const [layerName, tilesData] of Object.entries(layersData)) {
     const tilesetInfo = tilesets[layerName]
@@ -132,70 +137,19 @@ let player = new Player({
 })
 
 
-
+// add as many opossums as you want 
 let opossums = [ 
-  new Opossum({   // add as many opossums as you want 
-    x: 190,
-    y: 100,
-    size: 32,
-    width: 36,
-    height: 28,
-  }),
-  new Opossum({   // add as many opossums as you want 
-    x: 750,
-    y: 400,
-    size: 32,
-    width: 36,
-    height: 28,
-  }),
+  new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28, }),
+  new Opossum({ x: 750, y: 400, size: 32, width: 36, height: 28, }),
 
 ]
 
 let sprites = []
 //=================================================================================
 let hearts = [ 
-  new Heart ({
-    x: 10, 
-    y: 10, 
-    width: 21, 
-    height: 18, 
-    imageSrc: './images/hearts.png', 
-    spriteCropbox: {
-      x: 0,
-      y: 0,
-      width: 21,
-      height: 18,
-      frames: 6,
-    },
-  }),
-  new Heart ({
-    x: 33, 
-    y: 10, 
-    width: 21, 
-    height: 18, 
-    imageSrc: './images/hearts.png', 
-    spriteCropbox: {
-      x: 0,
-      y: 0,
-      width: 21,
-      height: 18,
-      frames: 6,
-    },
-  }),
-  new Heart ({
-    x: 56, 
-    y: 10, 
-    width: 21, 
-    height: 18, 
-    imageSrc: './images/hearts.png', 
-    spriteCropbox: {
-      x: 0,
-      y: 0,
-      width: 21,
-      height: 18,
-      frames: 6,
-    },
-  })
+  new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
+  new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
+  new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },})
 ]
 //=================================================================================
 
