@@ -1,4 +1,4 @@
-// Fox Run 
+// Fox Run
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
@@ -371,6 +371,8 @@ function init() {
   }
 }
 
+const FALL_THRESHOLD = 500
+
 function animate(backgroundCanvas) {
   // Calculate delta time
   const currentTime = performance.now()
@@ -379,11 +381,15 @@ function animate(backgroundCanvas) {
 
   const  enemyDeathSound = new Audio('./sound/enemy_death.mp3')
 
-  
-
   // Update player position
   player.handleInput(keys)
   player.update(deltaTime, collisionBlocks)
+
+  // Check if player falls below the threshold
+  if (player.y > FALL_THRESHOLD) {
+    init();
+    return;
+  }
 
   // Update Opossum Position
   for (let i = opossums.length - 1; i >= 0; i--) {
@@ -482,7 +488,7 @@ function animate(backgroundCanvas) {
   
 
   // Track scroll post distance 01
-  if (player.x > SCROLL_POST_RIGHT && player.x < 7488) {
+  if (player.x > SCROLL_POST_RIGHT && player.x < 7080) {
     const scrollPostDistance = player.x - SCROLL_POST_RIGHT  
     camera.x = scrollPostDistance 
   } 
