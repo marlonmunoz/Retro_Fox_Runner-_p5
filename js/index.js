@@ -29,8 +29,8 @@ const tilesets = {
   l_Home_Plus_Trees: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_BG_Tiles: { imageUrl: './images/tileset.png', tileSize: 16 },
   l_Ground: { imageUrl: './images/tileset.png', tileSize: 16 },
-  l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
-  l_Gems: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_embelishments: { imageUrl: './images/decorations.png', tileSize: 16 },
+  // l_Gems: { imageUrl: './images/decorations.png', tileSize: 16 },
   // l_enemies: { imageUrl: './images/decorations.png', tileSize: 16 },
   l_Collitions: { imageUrl: './images/tileset.png', tileSize: 16 },
 };
