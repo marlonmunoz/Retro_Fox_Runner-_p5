@@ -37,7 +37,7 @@ window.addEventListener('keyup', (event) => {
 // // Add event listener for user interaction
 window.addEventListener('click', () => {
   if (backgroundMusic.paused) {
-    backgroundMusic.volume = 0.5;
+    backgroundMusic.volume = 1;
     let playPromise = backgroundMusic.play()
 
     if (playPromise !== undefined) {

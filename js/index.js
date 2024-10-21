@@ -136,7 +136,7 @@ let player = new Player({
 // add as many opossums as you want 
 let opossums = [ 
   new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28, }),
-  new Opossum({ x: 750, y: 400, size: 32, width: 36, height: 28, }),
+  // new Opossum({ x: 750, y: 400, size: 32, width: 36, height: 28, }),
 
 ]
 
@@ -193,8 +193,9 @@ let gemUI = new Sprite({
 })
 let gemCount = 0
 
-const backgroundMusic = new Audio('./sound/digestive-biscuit.mp3')
+const backgroundMusic = new Audio('./sound/vibe_fox.mp3')
 backgroundMusic.loop = true;
+// backgroundMusic.volume = 0.8
 
 function startGame() {
   init();
@@ -255,34 +256,15 @@ function init() {
     // velocity: {x: 0, y: 0},
   })
   opossums = [ 
-    new Opossum({   // add as many opossums as you want 
-      x: 190,
-      y: 100,
-      size: 32,
-      width: 36,
-      height: 28,
-    }),
-    // new Opossum({   // add as many opossums as you want 
-    //   x: 250,  // Reduced distance
-    //   y: 100,
-    //   size: 32,
-    //   width: 36,
-    //   height: 28,
-    // }),
-    // new Opossum({   // add as many opossums as you want 
-    //   x: 400,
-    //   y: 100,
-    //   size: 32,
-    //   width: 36,
-    //   height: 28,
-    // }),
-    // new Opossum({   // add as many opossums as you want 
-    //   x: 750,
-    //   y: 400,
-    //   size: 32,
-    //   width: 36,
-    //   height: 28,
-    // }),
+    new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 410, y: 180, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 620, y: 95, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 600, y: 170, size: 32, width: 36, height: 28,}), //
+    new Opossum({ x: 500, y: 170, size: 32, width: 36, height: 28,}), //
+    new Opossum({ x: 930, y: 100, size: 32, width: 36, height: 28,}), 
+    new Opossum({ x: 900, y: 95, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 850, y: 400, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 800, y: 400, size: 32, width: 36, height: 28,}),
   ]
   sprites = []
   hearts = [ 
