@@ -91,10 +91,6 @@ const renderLayer = (tilesData, tilesetImage, tileSize, context) => {
 
 const renderStaticLayers = async (layersData) => {
   const offscreenCanvas = document.createElement('canvas')
-  const MAP_COLS = 500
-  const MAP_WIDTH = 500 * 16
-  offscreenCanvas.width = MAP_WIDTH
-  offscreenCanvas.height = MAP_COLS
   offscreenCanvas.width = canvas.width
   offscreenCanvas.height = canvas.height
   const offscreenContext = offscreenCanvas.getContext('2d')
