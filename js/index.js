@@ -132,17 +132,14 @@ let player = new Player({
   size: 32,
 })
 
-
-// add as many opossums as you want 
-let opossums = [ 
+// add as many opossums as you want
+let opossums = [
   new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28, }),
-  // new Opossum({ x: 750, y: 400, size: 32, width: 36, height: 28, }),
-
 ]
 
 let sprites = []
 //=================================================================================
-let hearts = [ 
+let hearts = [
   new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
   new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },})
@@ -173,15 +170,15 @@ let camera = {
 const SCROLL_POST_RIGHT = 240
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 200
-const SCROLL_POST_LEFT = 6570 
+const SCROLL_POST_LEFT = 6570
 let seaSkyBackground = null
 let mountainsBackground = null
 let gems = []
 let gemUI = new Sprite({
-  x: 13, 
-  y: 36, 
-  width: 15, 
-  height: 13, 
+  x: 13,
+  y: 36,
+  width: 15,
+  height: 13,
   imageSrc: './images/gem.png',
   spriteCropbox: {
     x: 0,
@@ -195,7 +192,6 @@ let gemCount = 0
 
 const backgroundMusic = new Audio('./sound/vibe_fox.mp3')
 backgroundMusic.loop = true;
-// backgroundMusic.volume = 0.8
 
 function startGame() {
   init();
@@ -207,10 +203,10 @@ function init() {
   gems = []
   gemCount = 0
   gemUI = new Sprite({
-    x: 13, 
-    y: 36, 
-    width: 15, 
-    height: 13, 
+    x: 13,
+    y: 36,
+    width: 15,
+    height: 13,
     imageSrc: './images/gem.png',
     spriteCropbox: {
       x: 0,
@@ -225,10 +221,10 @@ function init() {
       if (symbol === 18) {
         gems.push(
           new Sprite({
-            x: x * 16, 
-            y: y * 16, 
-            width: 15, 
-            height: 13, 
+            x: x * 16,
+            y: y * 16,
+            width: 15,
+            height: 13,
             imageSrc: './images/gem.png',
             spriteCropbox: {
               x: 0,
@@ -238,16 +234,16 @@ function init() {
               frames: 5,
             },
             hitbox: {
-              x: x * 16, 
-              y: y * 16, 
-              width: 15, 
+              x: x * 16,
+              y: y * 16,
+              width: 15,
               height: 13,
             }
           }),
         )
-      } 
+      }
     })
-  }) 
+  })
 
   player = new Player({
     x: 90,
@@ -255,25 +251,35 @@ function init() {
     size: 32,
     // velocity: {x: 0, y: 0},
   })
-  opossums = [ 
+  opossums = [
     new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 410, y: 180, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 620, y: 95, size: 32, width: 36, height: 28,}),
-    new Opossum({ x: 600, y: 170, size: 32, width: 36, height: 28,}), //
-    new Opossum({ x: 500, y: 170, size: 32, width: 36, height: 28,}), //
-    new Opossum({ x: 930, y: 100, size: 32, width: 36, height: 28,}), 
-    new Opossum({ x: 900, y: 95, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 600, y: 170, size: 32, width: 36, height: 28,}), 
+    new Opossum({ x: 500, y: 170, size: 32, width: 36, height: 28,}), 
+    new Opossum({ x: 900, y: 200, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 880, y: 95, size: 32, width: 36, height: 28,}), //
     new Opossum({ x: 850, y: 400, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 800, y: 400, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1100, y: 60, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1200, y: 60, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1200, y: 350, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1150, y: 350, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1420, y: 350, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1360, y: 280, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1520, y: 170, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1520, y: 170, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1600, y: 240, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 2080, y: 370, size: 32, width: 36, height: 28,}),
   ]
   sprites = []
-  hearts = [ 
+  hearts = [
     new Heart ({
-      x: 10, 
-      y: 10, 
-      width: 21, 
-      height: 18, 
-      imageSrc: './images/hearts.png', 
+      x: 10,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
       spriteCropbox: {
         x: 0,
         y: 0,
@@ -283,11 +289,11 @@ function init() {
       },
     }),
     new Heart ({
-      x: 33, 
-      y: 10, 
-      width: 21, 
-      height: 18, 
-      imageSrc: './images/hearts.png', 
+      x: 33,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
       spriteCropbox: {
         x: 0,
         y: 0,
@@ -297,11 +303,11 @@ function init() {
       },
     }),
     new Heart ({
-      x: 56, 
-      y: 10, 
-      width: 21, 
-      height: 18, 
-      imageSrc: './images/hearts.png', 
+      x: 56,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
       spriteCropbox: {
         x: 0,
         y: 0,
@@ -350,10 +356,10 @@ function animate(backgroundCanvas) {
         player.velocity.y = -200
         sprites.push(
           new Sprite({
-            x: opossum.x, 
-            y: opossum.y, 
-            width: 32, 
-            height: 32, 
+            x: opossum.x,
+            y: opossum.y,
+            width: 32,
+            height: 32,
             imageSrc: './images/enemy-death.png',
             spriteCropbox: {
               x: 0,
@@ -367,7 +373,7 @@ function animate(backgroundCanvas) {
         enemyDeathSound.play()
         opossums.splice(i, 1) // this will remove the enemies when you jump on top
       } else if (
-        collisionDirection === 'left' || 
+        collisionDirection === 'left' ||
         collisionDirection === 'right'
       ) {
 
@@ -396,7 +402,7 @@ function animate(backgroundCanvas) {
 
   // gems sound
   const gemCollectionSound = new Audio('./sound/gem_coin.mp3')
-  // gems 
+  // gems
   for (let i = gems.length - 1; i >= 0; i--) {
     const gem = gems [i] // this will grab only one sprite and store it into the array
     gem.update(deltaTime)
@@ -407,10 +413,10 @@ function animate(backgroundCanvas) {
       // create an item feedback animation
       sprites.push(
         new Sprite({
-          x: gem.x - 8, 
-          y: gem.y - 8, 
-          width: 32, 
-          height: 32, 
+          x: gem.x - 8,
+          y: gem.y - 8,
+          width: 32,
+          height: 32,
           imageSrc: './images/item-feedback.png',
           spriteCropbox: {
             x: 0,
@@ -427,32 +433,32 @@ function animate(backgroundCanvas) {
       gemCollectionSound.play()
       if (gems.length === 0) {
         console.log('YOU WIN');
-        
+
       }
     }
   }
-  
+
 
   // Track scroll post distance 01
   if (player.x > SCROLL_POST_RIGHT && player.x < 7080) {
-    const scrollPostDistance = player.x - SCROLL_POST_RIGHT  
-    camera.x = scrollPostDistance 
-  } 
-  
+    const scrollPostDistance = player.x - SCROLL_POST_RIGHT
+    camera.x = scrollPostDistance
+  }
+
   if (player.y < SCROLL_POST_TOP && camera.y > 0) {  // && camera.y > 0, ommit this condition to allow camera to go below 0
     const scrollPostDistance = SCROLL_POST_TOP - player.y
-    camera.y = scrollPostDistance 
+    camera.y = scrollPostDistance
   }
   if (player.y > SCROLL_POST_BOTTOM) {
     const scrollPostDistance = player.y - SCROLL_POST_BOTTOM
-    camera.y = -scrollPostDistance 
+    camera.y = -scrollPostDistance
   }
-  
-  
+
+
   // Render scene
   c.save()
   c.scale(dpr + 1, dpr + 1)
-  c.translate(-camera.x, camera.y) 
+  c.translate(-camera.x, camera.y)
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect
   c.drawImage(mountainsBackgroundCanvas, camera.x * 0.16, 0)  // 0.16 is the parallax effect
@@ -464,7 +470,7 @@ function animate(backgroundCanvas) {
     const opossum = opossums[i]
     opossum.draw(c)
   }
-  
+
   // explotion on enemy deaths
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
@@ -473,7 +479,7 @@ function animate(backgroundCanvas) {
 
   // gems FX
   for (let i = gems.length - 1; i >= 0; i--) {
-    const gem = gems [i] 
+    const gem = gems [i]
     gem.draw(c)
   }
 
@@ -483,7 +489,7 @@ function animate(backgroundCanvas) {
   // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
 
-  // Hearts displayed on upperleft screen 
+  // Hearts displayed on upperleft screen
   c.restore()
   c.save()
   c.scale(dpr + 1, dpr + 1)
