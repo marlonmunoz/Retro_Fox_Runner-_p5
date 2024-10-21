@@ -249,7 +249,7 @@ function init() {
   }) 
 
   player = new Player({
-    x: 100,
+    x: 90,
     y: 100,
     size: 32,
     // velocity: {x: 0, y: 0},
@@ -262,13 +262,27 @@ function init() {
       width: 36,
       height: 28,
     }),
-    new Opossum({   // add as many opossums as you want 
-      x: 750,
-      y: 400,
-      size: 32,
-      width: 36,
-      height: 28,
-    }),
+    // new Opossum({   // add as many opossums as you want 
+    //   x: 250,  // Reduced distance
+    //   y: 100,
+    //   size: 32,
+    //   width: 36,
+    //   height: 28,
+    // }),
+    // new Opossum({   // add as many opossums as you want 
+    //   x: 400,
+    //   y: 100,
+    //   size: 32,
+    //   width: 36,
+    //   height: 28,
+    // }),
+    // new Opossum({   // add as many opossums as you want 
+    //   x: 750,
+    //   y: 400,
+    //   size: 32,
+    //   width: 36,
+    //   height: 28,
+    // }),
   ]
   sprites = []
   hearts = [ 
@@ -481,14 +495,14 @@ function animate(backgroundCanvas) {
     gem.draw(c)
   }
 
-  
   // hearts displayed on upperleft screen
   // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
+
+  // Hearts displayed on upperleft screen 
   c.restore()
-  
   c.save()
   c.scale(dpr + 1, dpr + 1)
   for (let i = hearts.length - 1; i >= 0; i--) {

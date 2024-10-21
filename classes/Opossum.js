@@ -1,9 +1,9 @@
-const OPOSSUM_X_VELOCITY = -20
-const OPOSSUM_JUMP_POWER = 250
+const OPOSSUM_X_VELOCITY = -20  
+const OPOSSUM_JUMP_POWER = 250  
 const OPOSSUM_GRAVITY = 580
 
 class Opossum {
-  constructor({ x, y, width, height, velocity = { x: OPOSSUM_X_VELOCITY, y: 0 } }, turningDistance = 100) {
+  constructor({ x, y, width, height, velocity = { x: OPOSSUM_X_VELOCITY, y: 0 } }, turningDistance = 50) {
     this.x = x
     this.y = y
     this.width = width
@@ -120,20 +120,13 @@ class Opossum {
   }
 
 
-// ===================================================
-  // swithing sprites based on player's state
-
-  // switchSprites() DELETED
-
-// ===================================================
-
   jump() {
     this.velocity.y = -OPOSSUM_JUMP_POWER
     this.isOnGround = false
   }
 
   updateHorizontalPosition(deltaTime) {
-    if (Math.abs(this.distanceTravelled) > this.turningDistance) { // this conditional makes opossum mode from left to right
+    if (Math.abs(this.distanceTravelled) > this.turningDistance) { // this conditional makes opossum move from left to right
       this.velocity.x = -this.velocity.x
       this.distanceTravelled = 0
     }
