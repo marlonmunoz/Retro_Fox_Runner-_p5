@@ -141,12 +141,13 @@ let sprites = []
 //=================================================================================
 let hearts = [
   new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
-  new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
-  new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },})
+//   new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
+//   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
+//   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
 ]
 //=================================================================================
 
-const jumpSound = new Audio('./sound/jump.mp3');
+const jumpSound = new Audio('./sound/jump02.mp3');
 const keys = {
   w: {
     pressed: false,
@@ -190,7 +191,9 @@ let gemUI = new Sprite({
 })
 let gemCount = 0
 
-const backgroundMusic = new Audio('./sound/vibe_fox.mp3')
+// const backgroundMusic = new Audio('./sound/vibe_fox.mp3')
+// const backgroundMusic = new Audio('./sound/Fox-Run-Theme.mp3')
+const backgroundMusic = new Audio('./sound/invincible-fox.mp3')
 backgroundMusic.loop = true;
 
 function startGame() {
@@ -252,13 +255,13 @@ function init() {
     // velocity: {x: 0, y: 0},
   })
   opossums = [
-    new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 300, y: 240, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 410, y: 180, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 620, y: 95, size: 32, width: 36, height: 28,}),
-    new Opossum({ x: 600, y: 170, size: 32, width: 36, height: 28,}), 
-    new Opossum({ x: 500, y: 170, size: 32, width: 36, height: 28,}), 
-    new Opossum({ x: 900, y: 200, size: 32, width: 36, height: 28,}),
-    new Opossum({ x: 880, y: 95, size: 32, width: 36, height: 28,}), //
+    new Opossum({ x: 600, y: 256, size: 32, width: 36, height: 28,}), 
+    new Opossum({ x: 500, y: 256, size: 32, width: 36, height: 28,}), 
+    new Opossum({ x: 900, y: 220, size: 32, width: 36, height: 28,}),//
+    new Opossum({ x: 880, y: 100, size: 32, width: 36, height: 28,}), 
     new Opossum({ x: 850, y: 400, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 800, y: 400, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 1100, y: 60, size: 32, width: 36, height: 28,}),
@@ -271,6 +274,40 @@ function init() {
     new Opossum({ x: 1520, y: 170, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 1600, y: 240, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 2080, y: 370, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 1824, y: 240, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 2208, y: 112, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 2464, y: 368, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 2400, y: 368, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 2688, y: 96, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 2784, y: 208, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 3136, y: 112, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 3360, y: 112, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 3520, y: 80, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 3696, y: 48, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 4048, y: 96, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4000, y: 96, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4176, y: 336, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4252, y: 192, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4352, y: 112, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4368, y: 304, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4464, y: 224, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4384, y: 432, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4320, y: 432, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 4672, y: 176, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 4896, y: 96, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5024, y: 176, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5232, y: 288, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5376, y: 80, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5280, y: 80, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5264, y: 144, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5440, y: 128, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5424, y: 128, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5392, y: 448, size: 32, width: 36, height: 28,}),
   ]
   sprites = []
   hearts = [
@@ -315,6 +352,34 @@ function init() {
         height: 18,
         frames: 6,
       },
+    }),
+    new Heart ({
+      x: 79,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
+    }),
+    new Heart ({
+      x: 102,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
     })
   ]
   camera = {
@@ -323,7 +388,7 @@ function init() {
   }
 }
 
-const FALL_THRESHOLD = 500
+const FALL_THRESHOLD = 500 // when player falls below this 
 
 function animate(backgroundCanvas) {
   // Calculate delta time
@@ -372,11 +437,35 @@ function animate(backgroundCanvas) {
         )
         enemyDeathSound.play()
         opossums.splice(i, 1) // this will remove the enemies when you jump on top
+      } else if ( // remove opossum with roll action
+        (collisionDirection === 'left' || collisionDirection === 'right') && 
+        player.isOnGround && 
+        player.isRolling
+      ) {
+        sprites.push(
+          new Sprite({
+            x: opossum.x,
+            y: opossum.y,
+            width: 32,
+            height: 32,
+            imageSrc: './images/enemy-death.png',
+            spriteCropbox: {
+              x: 0,
+              y: 0,
+              width:40,
+              height: 41,
+              frames: 6,
+            },
+          }),
+        )
+        enemyDeathSound.play()
+        opossums.splice(i, 1) 
       } else if (
         collisionDirection === 'left' ||
         collisionDirection === 'right'
       ) {
 
+        // Heart Lives
         const fullHearts = hearts.filter((heart) => {
           return !heart.depleted
         })
@@ -465,22 +554,22 @@ function animate(backgroundCanvas) {
   c.drawImage(backgroundCanvas, 0, 0)
   player.draw(c)
 
-  // opossums = enemies
-  for (let i = opossums.length - 1; i >= 0; i--) {
-    const opossum = opossums[i]
-    opossum.draw(c)
-  }
-
+  
   // explotion on enemy deaths
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
     sprite.draw(c)
   }
-
+  
   // gems FX
   for (let i = gems.length - 1; i >= 0; i--) {
     const gem = gems [i]
     gem.draw(c)
+  }
+  // opossums = enemies
+  for (let i = opossums.length - 1; i >= 0; i--) {
+    const opossum = opossums[i]
+    opossum.draw(c)
   }
 
   // hearts displayed on upperleft screen

@@ -31,6 +31,9 @@ window.addEventListener('keyup', (event) => {
     case 'd':
       keys.d.pressed = false
       break
+    case ' ':
+      player.roll()
+      break
   }
 })
 
