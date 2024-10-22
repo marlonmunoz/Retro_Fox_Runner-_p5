@@ -180,8 +180,8 @@ let camera = {
 // First scroll post
 const SCROLL_POST_RIGHT = 350
 const SCROLL_POST_TOP = 100
-const SCROLL_POST_BOTTOM = 200
-const SCROLL_POST_LEFT = 6570
+const SCROLL_POST_BOTTOM = 250
+// const SCROLL_POST_LEFT = 6570
 let seaSkyBackground = null
 let mountainsBackground = null
 let gems = []
@@ -582,7 +582,7 @@ function animate(backgroundCanvas) {
     opossum.draw(c)
   }
 
-  // hearts displayed on upperleft screen
+  
   c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
   c.fillRect(350, SCROLL_POST_TOP, 100, 10)
   c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
