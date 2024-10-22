@@ -3,8 +3,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2924 * dpr // 2924
-canvas.height = 1576 * dpr // 1540
+canvas.width = 2124 * dpr // 2924 - 1024
+canvas.height = 1376 * dpr // 1576 - 756
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -89,11 +89,21 @@ const renderLayer = (tilesData, tilesetImage, tileSize, context) => {
   })
 }
 
-const renderStaticLayers = async (layersData) => {
-  const offscreenCanvas = document.createElement('canvas')
-  offscreenCanvas.width = canvas.width
-  offscreenCanvas.height = canvas.height
-  const offscreenContext = offscreenCanvas.getContext('2d')
+// const renderStaticLayers = async (layersData) => {
+//   const offscreenCanvas = document.createElement('canvas')
+//   offscreenCanvas.width = canvas.width
+//   offscreenCanvas.height = canvas.height
+//   const offscreenContext = offscreenCanvas.getContext('2d')
+
+
+  const renderStaticLayers = async (layersData) => {
+    const offscreenCanvas = document.createElement('canvas')
+    const MAP_COLS = 500
+    const MAP_WIDTH = 500 * 16
+    offscreenCanvas.width = MAP_WIDTH
+    offscreenCanvas.height = canvas.height
+    const offscreenContext = offscreenCanvas.getContext('2d')
+
 
 
   for (const [layerName, tilesData] of Object.entries(layersData)) {
@@ -168,7 +178,7 @@ let camera = {
 }
 
 // First scroll post
-const SCROLL_POST_RIGHT = 240
+const SCROLL_POST_RIGHT = 350
 const SCROLL_POST_TOP = 100
 const SCROLL_POST_BOTTOM = 200
 const SCROLL_POST_LEFT = 6570
@@ -529,7 +539,7 @@ function animate(backgroundCanvas) {
 
 
   // Track scroll post distance 01
-  if (player.x > SCROLL_POST_RIGHT && player.x < 7080) {
+  if (player.x > SCROLL_POST_RIGHT && player.x < 7620) {
     const scrollPostDistance = player.x - SCROLL_POST_RIGHT
     camera.x = scrollPostDistance
   }
@@ -546,7 +556,7 @@ function animate(backgroundCanvas) {
 
   // Render scene
   c.save()
-  c.scale(dpr + 1, dpr + 1)
+  c.scale(dpr + 2, dpr + 2)
   c.translate(-camera.x, camera.y)
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect
@@ -573,15 +583,15 @@ function animate(backgroundCanvas) {
   }
 
   // hearts displayed on upperleft screen
-  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
 
   // Hearts displayed on upperleft screen
   c.restore()
   c.save()
-  c.scale(dpr + 1, dpr + 1)
+  c.scale(dpr + 2, dpr + 2)
   for (let i = hearts.length - 1; i >= 0; i--) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
     heart.draw(c)
