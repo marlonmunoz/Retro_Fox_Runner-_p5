@@ -142,13 +142,9 @@ let player = new Player({
   size: 32,
 })
 
-// add as many opossums as you want
-let opossums = [
-  new Opossum({ x: 190, y: 100, size: 32, width: 36, height: 28, }),
-]
-
+let opossums = []
+let eagles = []
 let sprites = []
-//=================================================================================
 let hearts = [
   new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
 //   new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
@@ -157,7 +153,7 @@ let hearts = [
 ]
 //=================================================================================
 
-const jumpSound = new Audio('./sound/jump02.mp3');
+const jumpSound = new Audio('./sound/jump.mp3');
 const keys = {
   w: {
     pressed: false,
@@ -257,13 +253,31 @@ function init() {
       }
     })
   })
-
+  
   player = new Player({
     x: 90,
     y: 100,
     size: 32,
-    // velocity: {x: 0, y: 0},
+    velocity: {x: 0, y: 0},
   })
+
+  eagles = [
+    new Eagle ({x: 224, ydw: 32, width: 40, height: 41,}),
+    new Eagle ({x: 800, y: 56, width: 40, height: 41,}),
+    new Eagle ({x: 1520, y: 80, width: 40, height: 41,}),
+    new Eagle ({x: 1920, y: 160, width: 40, height: 41,}),
+    new Eagle ({x: 2384, y: 48, width: 40, height: 41,}),
+    new Eagle ({x: 3120, y: 272, width: 40, height: 41,}),
+
+    new Eagle ({x: 5840, y: 64, width: 40, height: 41,}),
+    new Eagle ({x: 5840, y: 64, width: 40, height: 41,}),
+    new Eagle ({x: 6320, y: 64, width: 40, height: 41,}),
+    new Eagle ({x: 6960, y: 192, width: 40, height: 41,}),
+    new Eagle ({x: 7312, y: 32, width: 40, height: 41,}),
+    new Eagle ({x: 7312, y: 32, width: 40, height: 41,}),
+    new Eagle ({x: 7632, y: 208, width: 40, height: 41,}),
+  ]
+  
   opossums = [
     new Opossum({ x: 300, y: 240, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 410, y: 180, size: 32, width: 36, height: 28,}),
@@ -318,6 +332,32 @@ function init() {
     new Opossum({ x: 5440, y: 128, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 5424, y: 128, size: 32, width: 36, height: 28,}),
     new Opossum({ x: 5392, y: 448, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 3200, y: 384, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 3136, y: 384, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 2960, y: 384, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 5872, y: 288, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5760, y: 288, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5936, y: 384, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5744, y: 384, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5680, y: 448, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 5872, y: 448, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6416, y: 192, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6304, y: 192, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6320, y: 240, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6368, y: 336, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6288, y: 400, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6512, y: 400, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 6656, y: 208, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 7040, y: 416, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 7120, y: 176, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 7408, y: 320, size: 32, width: 36, height: 28,}), ///
+    new Opossum({ x: 7296, y: 320, size: 32, width: 36, height: 28,}),
+
+    new Opossum({ x: 7504, y: 432, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 7360, y: 432, size: 32, width: 36, height: 28,}),
+    new Opossum({ x: 7232, y: 432, size: 32, width: 36, height: 28,}),
   ]
   sprites = []
   hearts = [
@@ -379,6 +419,20 @@ function init() {
     }),
     new Heart ({
       x: 102,
+      y: 10,
+      width: 21,
+      height: 18,
+      imageSrc: './images/hearts.png',
+      spriteCropbox: {
+        x: 0,
+        y: 0,
+        width: 21,
+        height: 18,
+        frames: 6,
+      },
+    }),
+    new Heart ({
+      x: 125,
       y: 10,
       width: 21,
       height: 18,
@@ -489,6 +543,53 @@ function animate(backgroundCanvas) {
     }
   }
 
+  // Update EAGLE Position ***
+  for (let i = eagles.length - 1; i >= 0; i--) {
+    const eagle = eagles[i]
+    eagle.update(deltaTime, collisionBlocks)
+
+    // Jump on an enemy
+    const collisionDirection = checkCollitions(player, eagle)
+    if (collisionDirection) { // if collision exits, remove enemy from the game
+      if (collisionDirection === 'bottom' && !player.isOnGround) {
+        player.velocity.y = -200
+        sprites.push(
+          new Sprite({
+            x: eagle.x,
+            y: eagle.y,
+            width: 32,
+            height: 32,
+            imageSrc: './images/enemy-death.png',
+            spriteCropbox: {
+              x: 0,
+              y: 0,
+              width:40,
+              height: 41,
+              frames: 6,
+            },
+          }),
+        )
+        enemyDeathSound.play()
+        eagles.splice(i, 1) // this will remove the enemies when you jump on top
+      } else if ( // remove opossum with roll action
+        collisionDirection === 'left' || 
+        collisionDirection === 'right' || 
+        collisionDirection === 'top'
+      ) {
+        // Heart Lives
+        const fullHearts = hearts.filter((heart) => {
+          return !heart.depleted
+        })
+        if (!player.isInvincible && fullHearts.length > 0){
+          fullHearts[fullHearts.length -1].depleted = true
+        } else if (fullHearts.length === 0) {
+          init()
+        }
+        player.setIsInvincible()
+      }
+    }
+  }
+
   //for loop iterate backwards [explotion enemy death sprite]
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
@@ -581,11 +682,16 @@ function animate(backgroundCanvas) {
     const opossum = opossums[i]
     opossum.draw(c)
   }
-
+  // opossums = enemies
+  for (let i = eagles.length - 1; i >= 0; i--) {
+    const eagle = eagles[i]
+    eagle.draw(c)
+  }
   
-  c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
-  c.fillRect(350, SCROLL_POST_TOP, 100, 10)
-  c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
+  
+  // c.fillRect(SCROLL_POST_RIGHT, 50, 10, 100)
+  // c.fillRect(350, SCROLL_POST_TOP, 100, 10)
+  // c.fillRect(350, SCROLL_POST_BOTTOM, 100, 10)
   // c.fillRect(SCROLL_POST_LEFT, 50, 10, 100)
 
   // Hearts displayed on upperleft screen
