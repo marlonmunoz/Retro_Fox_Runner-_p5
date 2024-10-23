@@ -1,11 +1,11 @@
-const EAGLE_X_VELOCITY = -20  
-const EAGLE_JUMP_POWER = 250  
-const EAGLE_GRAVITY = 580
+const VULTURE_X_VELOCITY = -20  
+const VULTURE_JUMP_POWER = 250  
+const VULTURE_GRAVITY = 580
 
-class Eagle {
+class Vulture {
   constructor(
-    { x, y, width, height, velocity = { x: EAGLE_X_VELOCITY, y: 0 } }, 
-    turningDistance = 50
+    { x, y, width, height, velocity = { x: VULTURE_X_VELOCITY, y: 0 } }, 
+    turningDistance = 200
     ) {
     this.x = x
     this.y = y
@@ -18,14 +18,14 @@ class Eagle {
     this.image.onload = () => {
       this.isImageLoaded = true
     }
-    this.image.src = './images/eagle.png'
+    this.image.src = './images/vulture.png'
     this.elapsedTime = 0
     this.currentFrame = 0
     this.sprites = {
       run: {
         x: 0,
         y: 0,
-        width: 39,
+        width: 40,
         height: 41,
         frames: 4,
       },
@@ -35,8 +35,8 @@ class Eagle {
     this.hitbox = {
       x: 0,
       y: 0,
-      width: 40,
-      height: 32, // used to be 41
+      width: 39,
+      height: 20, // used to be 41
     }
     this.distanceTravelled = 0
     this.turningDistance = turningDistance
@@ -44,17 +44,17 @@ class Eagle {
 
   draw(c) {
     // Red square debug code
-    // c.fillStyle = 'rgba(255, 0, 0, 0.5)'
-    // c.fillRect(this.x, this.y, this.width, this.height)
+    c.fillStyle = 'rgba(255, 0, 0, 0.5)'
+    c.fillRect(this.x, this.y, this.width, this.height)
 
     // // Hitbox debug code
-    // c.fillStyle = 'rgba(0, 0, 255, 0.5)'
-    // c.fillRect(
-    //   this.hitbox.x, 
-    //   this.hitbox.y, 
-    //   this.hitbox.width, 
-    //   this.hitbox.height
-    // )
+    c.fillStyle = 'rgba(0, 0, 255, 0.5)'
+    c.fillRect(
+      this.hitbox.x, 
+      this.hitbox.y, 
+      this.hitbox.width, 
+      this.hitbox.height
+    )
 
     if (this.isImageLoaded === true) {
       let xScale = 1
@@ -114,18 +114,17 @@ class Eagle {
     this.determineDirection()
   }
 
-  // Chenge the direction the image is facing HERE
   determineDirection() {
     if (this.velocity.x > 0) {
-      this.facing = 'right'
-    } else if (this.velocity.x < 0) {
       this.facing = 'left'
+    } else if (this.velocity.x < 0) {
+      this.facing = 'right'
     }
   }
 
 
   jump() {
-    this.velocity.y = -EAGLE_JUMP_POWER
+    this.velocity.y = -VULTURE_JUMP_POWER
     this.isOnGround = false
   }
 
@@ -147,16 +146,16 @@ class Eagle {
   }
 
   applyGravity(deltaTime) {
-    this.velocity.y += EAGLE_GRAVITY * deltaTime
+    this.velocity.y += VULTURE_GRAVITY * deltaTime
   }
 
   handleInput(keys) {
     this.velocity.x = 0
 
     if (keys.d.pressed) {
-      this.velocity.x = EAGLE_X_VELOCITY
+      this.velocity.x = VULTURE_X_VELOCITY
     } else if (keys.a.pressed) {
-      this.velocity.x = -EAGLE_X_VELOCITY
+      this.velocity.x = -VULTURE_X_VELOCITY
     }
   }
 

@@ -144,13 +144,14 @@ let player = new Player({
 
 let opossums = []
 let eagles = []
+let vultures = []
 let sprites = []
-let hearts = [
-  new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
+let hearts = []
+//   new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
 //   new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
 //   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
 //   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
-]
+
 //=================================================================================
 
 const jumpSound = new Audio('./sound/jump.mp3');
@@ -261,8 +262,15 @@ function init() {
     velocity: {x: 0, y: 0},
   })
 
+  vultures = [
+    new Vulture ({ x: 600, y: 16, size: 32, width: 36, height: 28,}),
+    new Vulture ({ x: 1728, y: 64, size: 32, width: 36, height: 28,}),
+    new Vulture ({ x: 2700, y: 160, size: 32, width: 36, height: 28,}),
+    new Vulture ({ x: 3040, y: 32, size: 32, width: 36, height: 28,}),
+  ]
+
   eagles = [
-    new Eagle ({x: 224, ydw: 32, width: 40, height: 41,}),
+    new Eagle ({x: 224, w: 32, width: 40, height: 41,}),
     new Eagle ({x: 800, y: 56, width: 40, height: 41,}),
     new Eagle ({x: 1520, y: 80, width: 40, height: 41,}),
     new Eagle ({x: 1920, y: 160, width: 40, height: 41,}),
@@ -277,6 +285,7 @@ function init() {
     new Eagle ({x: 7312, y: 32, width: 40, height: 41,}),
     new Eagle ({x: 7632, y: 208, width: 40, height: 41,}),
   ]
+
   
   opossums = [
     new Opossum({ x: 300, y: 240, size: 32, width: 36, height: 28,}),
@@ -590,6 +599,54 @@ function animate(backgroundCanvas) {
     }
   }
 
+
+  // Update VULTURE Position ***
+  for (let i = vultures.length - 1; i >= 0; i--) {
+    const vulture = vultures[i]
+    vulture.update(deltaTime, collisionBlocks)
+
+    // Jump on an enemy
+    const collisionDirection = checkCollitions(player, vulture)
+    if (collisionDirection) { // if collision exits, remove enemy from the game
+      if (collisionDirection === 'bottom' && !player.isOnGround) {
+        player.velocity.y = -200
+        sprites.push(
+          new Sprite({
+            x: vulture.x,
+            y: vulture.y,
+            width: 32,
+            height: 32,
+            imageSrc: './images/enemy-death.png',
+            spriteCropbox: {
+              x: 0,
+              y: 0,
+              width:40,
+              height: 41,
+              frames: 4,
+            },
+          }),
+        )
+        enemyDeathSound.play()
+        vultures.splice(i, 1) // this will remove the enemies when you jump on top
+      } else if ( // remove opossum with roll action
+        collisionDirection === 'left' || 
+        collisionDirection === 'right' || 
+        collisionDirection === 'top'
+      ) {
+        // Heart Lives
+        const fullHearts = hearts.filter((heart) => {
+          return !heart.depleted
+        })
+        if (!player.isInvincible && fullHearts.length > 0){
+          fullHearts[fullHearts.length -1].depleted = true
+        } else if (fullHearts.length === 0) {
+          init()
+        }
+        player.setIsInvincible()
+      }
+    }
+  }
+
   //for loop iterate backwards [explotion enemy death sprite]
   for (let i = sprites.length - 1; i >= 0; i--) {
     const sprite = sprites [i] // this will grab only one sprite and store it into the array
@@ -682,10 +739,16 @@ function animate(backgroundCanvas) {
     const opossum = opossums[i]
     opossum.draw(c)
   }
-  // opossums = enemies
+  // eagles = enemies
   for (let i = eagles.length - 1; i >= 0; i--) {
     const eagle = eagles[i]
     eagle.draw(c)
+  }
+
+  // vulture = enemies
+  for (let i = vultures.length - 1; i >= 0; i--) {
+    const vulture = vultures[i]
+    vulture.draw(c)
   }
   
   
