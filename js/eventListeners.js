@@ -18,6 +18,19 @@ window.addEventListener('keydown', (event) => {
   }
 })
 
+// let paused = false
+// window.addEventListener('keydown', (event) => {
+//   if (event.key === 'p') {
+//     // paused = !paused;
+//     if (gamePaused) {
+//       pauseGame()
+//     } else {
+//       resumeGame()
+//     }
+    
+//   }
+// });
+
 window.addEventListener('keyup', (event) => {
   switch (event.key) {
     case 'w':

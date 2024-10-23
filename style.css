@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  body {
+    background: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  canvas {
+    width: 1424px;
+    height: 876px;
+    image-rendering: pixelated;
+    border: 20px solid rgb(34, 135, 178);
+    border-radius: 7px;
+  }
