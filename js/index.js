@@ -462,26 +462,9 @@ function init() {
 }
 
 const FALL_THRESHOLD = 500 // when player falls below this 
-// let backgroundCanvas;
-let gamePaused = false
-
-// function pauseGame() {
-//   backgroundMusic.pause()
-//   gamePaused = true
-//   console.log('Game Paused');
-// }
-
-// function resumeGame() {
-//   backgroundMusic.play()
-//   gamePaused = false
-//   console.log('Game Resumed');
-//   requestAnimationFrame(() => animate(backgroundCanvas))
-// }
 
 function animate(backgroundCanvas) {
-  // if (gamePaused){
-  //   return
-  // }
+ 
 
   // Calculate delta time
   const currentTime = performance.now()
@@ -665,6 +648,7 @@ function animate(backgroundCanvas) {
       }
     }
   }
+
 
   //for loop iterate backwards [explotion enemy death sprite]
   for (let i = sprites.length - 1; i >= 0; i--) {
