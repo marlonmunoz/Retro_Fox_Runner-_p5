@@ -466,7 +466,7 @@ function init() {
   }
 }
 
-const FALL_THRESHOLD = 500 // when player falls below this 
+const FALL_THRESHOLD = 600 // when player falls below this 
 
 function animate(backgroundCanvas) {
  
