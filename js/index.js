@@ -154,7 +154,7 @@ let hearts = []
 
 //=================================================================================
 
-const jumpSound = new Audio('./sound/jump.mp3');
+const jumpSound = new Audio('./sound/jump02.mp3');
 const keys = {
   w: {
     pressed: false,
@@ -163,6 +163,9 @@ const keys = {
     pressed: false,
   },
   d: {
+    pressed: false,
+  },
+  p: {
     pressed: false,
   },
 }
@@ -207,6 +210,8 @@ function startGame() {
   init();
   startRendering();
 }
+
+
 
 // GAME RESET
 function init() {
@@ -717,7 +722,7 @@ function animate(backgroundCanvas) {
 
   // Render scene
   c.save()
-  c.scale(dpr + 2, dpr + 2)
+  c.scale(dpr + 3.9, dpr + 3.9)
   c.translate(-camera.x, camera.y)
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect

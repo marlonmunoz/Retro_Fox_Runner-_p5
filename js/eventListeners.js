@@ -1,7 +1,9 @@
+
+let isPaused = false
+
 window.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'w':
-      // player.jump()
       if (!keys.w.pressed) {
         jumpSound.currentTime = 0
         jumpSound.play();
@@ -14,6 +16,17 @@ window.addEventListener('keydown', (event) => {
       break
     case 'd':
       keys.d.pressed = true
+      break
+    case 'p':
+      isPaused = !isPaused
+      const pauseText = document.getElementById('pauseText')
+      if(isPaused) {
+        console.log('Game paused');
+        pauseText.style.display = 'block'
+      } else {
+        console.log('Game resumed');
+        pauseText.style.display = 'none'
+      }
       break
   }
 })
