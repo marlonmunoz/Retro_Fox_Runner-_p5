@@ -32,4 +32,43 @@
     transform: translate(-50%, -50%);
     font-size: 58px;
     color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 7px;
+    padding: 10px 20px;
+  }
+  
+
+  #controllerText {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 7px;
+    color: white;
+    padding: 20px;
+    font-size: 18px;
+    display: none;
+    z-index: 1000;
+  }
+
+  #controllerText ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+  }
+
+  #keyboardControls {
+    color: white;
+    font-size: 40px;
+  }
+
+  #keyboardMenu {
+    font-size: 20px;
+  }
+
+  #keyboardSelections {
+    color: firebrick;
   }

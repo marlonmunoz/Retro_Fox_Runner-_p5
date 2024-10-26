@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
   </head>
    <body>
+    <!-- <div id="topText">FOX-RUNNER GAME KEY CONTROLS</div> -->x
     <canvas style="image-rendering: pixelated"></canvas>
     <script src="./data/l_Sea_Sky.js"></script>
     <script src="./data/l_Mountains.js"></script>
@@ -29,9 +30,24 @@
   
     <script src="./js/index.js"></script>
     <div id="pauseText">PAUSE</div>
+    <div id="controllerText">
+      <p id="keyboardControls">GAME KEY CONTROLS</p>
+      <br>
+      <ul id="keyboardMenu">
+        <li><span id="keyboardSelections">a: </span>Backwards</li>
+        <br>
+        <li><span id="keyboardSelections">w: </span>Jump</li>
+        <br>
+        <li><span id="keyboardSelections">d: </span>Fordward</li>
+        <br>
+        <li><span id="keyboardSelections">spacebar: </span>Roll-Attack</li>
+      </ul>
+    </div>
     <script src="./js/eventListeners.js"></script>
+    
     
   </body>
 </html>
+
 
 

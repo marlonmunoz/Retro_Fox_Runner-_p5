@@ -1,5 +1,6 @@
 
 let isPaused = false
+let isInstructions = false
 
 window.addEventListener('keydown', (event) => {
   switch (event.key) {
@@ -26,6 +27,17 @@ window.addEventListener('keydown', (event) => {
       } else {
         console.log('Game resumed');
         pauseText.style.display = 'none'
+      }
+      break
+    case 'i':
+      isInstructions = !isInstructions
+      const controllerText = document.getElementById('controllerText')
+      if(isInstructions) {
+        console.log('Instructions displayed');
+        controllerText.style.display = 'block'
+      } else {
+        console.log('Instructions hidden');
+        controllerText.style.display = 'none'
       }
       break
   }

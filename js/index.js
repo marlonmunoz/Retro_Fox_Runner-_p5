@@ -65,6 +65,8 @@ collisions.forEach((row, y) => {
   })
 })
 
+
+
 const renderLayer = (tilesData, tilesetImage, tileSize, context) => {
   tilesData.forEach((row, y) => {
     row.forEach((symbol, x) => {
@@ -168,6 +170,9 @@ const keys = {
   p: {
     pressed: false,
   },
+  i: {
+    pressed: false,
+  }
 }
 
 
@@ -767,8 +772,10 @@ function animate(backgroundCanvas) {
 
   // Hearts displayed on upperleft screen
   c.restore()
+
   c.save()
   c.scale(dpr + 2, dpr + 2)
+  
   for (let i = hearts.length - 1; i >= 0; i--) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
     heart.draw(c)
@@ -779,8 +786,6 @@ function animate(backgroundCanvas) {
 
   requestAnimationFrame(() => animate(backgroundCanvas))
 }
-
-
 const startRendering = async () => {
   try {
     seaSkyBackgroundCanvas = await renderStaticLayers(seaSkyLayerData)
