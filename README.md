@@ -9,16 +9,16 @@ The game is fully functional. This is a retro 2D game. It was my first time gett
 - `open index.html` 
 ## Display Game Key Controls
 
-`Click` anywhere in the screen to start the game
-Press `i` to display in game menu.
+- `Click` anywhere in the screen to start the game
+- Press `i` to display in game menu.
 
 ## Keyboard Control Instrunctions
-`i` = Display menu controls
-`p` = Pause/Resume game
-`a` = Backwards
-`w` = Jump
-`d` = Fordward
-`space bar` = Rolling Attack
+- `i` = Display menu controls
+- `p` = Pause/Resume game
+- `a` = Backwards
+- `w` = Jump
+- `d` = Fordward
+- `space bar` = Rolling Attack
 
 ## CREDITS
 - Thanks to `ansimuz` for providing the assests
