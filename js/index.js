@@ -150,13 +150,10 @@ let vultures = []
 let sprites = []
 let hearts = []
 //   new Heart ({ x: 10, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
-//   new Heart ({ x: 33, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, }, }),
-//   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
-//   new Heart ({ x: 56, y: 10, width: 21, height: 18, imageSrc: './images/hearts.png', spriteCropbox: {x: 0, y: 0, width: 21, height: 18, frames: 6, },}),
 
 //=================================================================================
 
-const jumpSound = new Audio('./sound/jump02.mp3');
+const jumpSound = new Audio('./sound/jump.mp3');
 const keys = {
   w: {
     pressed: false,
@@ -207,8 +204,8 @@ let gemUI = new Sprite({
 let gemCount = 0
 
 // const backgroundMusic = new Audio('./sound/vibe_fox.mp3')
-// const backgroundMusic = new Audio('./sound/Fox-Run-Theme.mp3')
-const backgroundMusic = new Audio('./sound/invincible-fox.mp3')
+const backgroundMusic = new Audio('./sound/Fox-Run-Theme.mp3')
+// const backgroundMusic = new Audio('./sound/invincible-fox.mp3')
 backgroundMusic.loop = true;
 
 function startGame() {
@@ -450,20 +447,20 @@ function init() {
         frames: 6,
       },
     }),
-    new Heart ({
-      x: 125,
-      y: 10,
-      width: 21,
-      height: 18,
-      imageSrc: './images/hearts.png',
-      spriteCropbox: {
-        x: 0,
-        y: 0,
-        width: 21,
-        height: 18,
-        frames: 6,
-      },
-    })
+    // new Heart ({
+    //   x: 125,
+    //   y: 10,
+    //   width: 21,
+    //   height: 18,
+    //   imageSrc: './images/hearts.png',
+    //   spriteCropbox: {
+    //     x: 0,
+    //     y: 0,
+    //     width: 21,
+    //     height: 18,
+    //     frames: 6,
+    //   },
+    // })
   ]
   camera = {
     x: 0,
