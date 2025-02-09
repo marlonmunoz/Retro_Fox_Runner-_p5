@@ -66,4 +66,12 @@
 
   #keyboardSelections {
     color: rgb(219, 99, 238);
+    /* border: 1px solid white */
   }
+
+
+
+pre {
+  text-align: left;
+}
+
