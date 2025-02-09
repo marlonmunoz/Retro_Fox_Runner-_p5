@@ -24,9 +24,12 @@ window.addEventListener('keydown', (event) => {
       if(isPaused) {
         console.log('Game paused');
         pauseText.style.display = 'block'
+        backgroundMusic.pause() // Pause the background music
       } else {
         console.log('Game resumed');
         pauseText.style.display = 'none'
+        backgroundMusic.play() // Resume the background music
+        lastTime = performance.now()
       }
       break
     case 'i':

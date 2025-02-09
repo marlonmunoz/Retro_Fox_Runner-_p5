@@ -471,6 +471,10 @@ function init() {
 const FALL_THRESHOLD = 600 // when player falls below this 
 
 function animate(backgroundCanvas) {
+  if (isPaused) {
+    requestAnimationFrame(() => animate(backgroundCanvas))
+    return 
+  }
  
 
   // Calculate delta time
