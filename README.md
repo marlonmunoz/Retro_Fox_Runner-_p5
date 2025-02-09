@@ -9,9 +9,10 @@ The game is fully functional. This is a retro 2D game. It was my first time gett
 - `open index.html` 
 ## Display Game Key Controls
 
-- `i` = Display menu controls
 
-## Control Instrunctions
+## Keyboard Control Instrunctions
+- `i` = Display menu controls
+- `p` = Pause/Resume game
 - `a` = Backwards
 - `w` = Jump
 - `d` = Fordward
