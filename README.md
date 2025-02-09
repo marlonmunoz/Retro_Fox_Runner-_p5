@@ -11,12 +11,12 @@ The game is fully functional. This is a retro 2D game. It was my first time gett
 
 
 ## Keyboard Control Instrunctions
-- `i` = Display menu controls
-- `p` = Pause/Resume game
-- `a` = Backwards
-- `w` = Jump
-- `d` = Fordward
-- `space bar` = Rolling Attack
+`i` = Display menu controls
+`p` = Pause/Resume game
+`a` = Backwards
+`w` = Jump
+`d` = Fordward
+'space bar' = Rolling Attack
 
 ## CREDITS
 - Thanks to `ansimuz` for providing the assests
