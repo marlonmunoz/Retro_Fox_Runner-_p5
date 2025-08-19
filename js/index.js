@@ -180,9 +180,9 @@ let camera = {
 }
 
 // First scroll post
-const SCROLL_POST_RIGHT = 350
-const SCROLL_POST_TOP = 100
-const SCROLL_POST_BOTTOM = 250
+const SCROLL_POST_RIGHT = 200
+const SCROLL_POST_TOP = 200
+const SCROLL_POST_BOTTOM = 200
 // const SCROLL_POST_LEFT = 6570
 let seaSkyBackground = null
 let mountainsBackground = null
@@ -720,6 +720,7 @@ function animate(backgroundCanvas) {
     const scrollPostDistance = SCROLL_POST_TOP - player.y
     camera.y = scrollPostDistance
   }
+  
   if (player.y > SCROLL_POST_BOTTOM) {
     const scrollPostDistance = player.y - SCROLL_POST_BOTTOM
     camera.y = -scrollPostDistance
