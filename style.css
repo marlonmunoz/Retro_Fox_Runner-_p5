@@ -16,8 +16,10 @@
   }
 
   canvas {
-    width: 1424px;
-    height: 876px;
+    /* width: 1424px; */
+    /* height: 876px; */
+    width: 2124;
+    height: 1376;
     image-rendering: pixelated;
     border: 5px solid rgb(52, 1, 255);
     border-radius: 7px;

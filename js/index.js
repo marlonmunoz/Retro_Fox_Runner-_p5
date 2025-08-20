@@ -3,8 +3,8 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2124 * dpr // 2924 - 1024
-canvas.height = 1376 * dpr // 1576 - 756
+canvas.width = 2124 // Fixed width
+canvas.height = 1376 // Fixed height
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -776,7 +776,7 @@ function animate(backgroundCanvas) {
   c.restore()
 
   c.save()
-  c.scale(dpr + 2, dpr + 2)
+  c.scale(3, 3)
   
   for (let i = hearts.length - 1; i >= 0; i--) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
