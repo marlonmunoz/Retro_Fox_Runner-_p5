@@ -3,8 +3,10 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 
-canvas.width = 2124 // Fixed width
-canvas.height = 1376 // Fixed height
+canvas.width = 1162 // Fixed width
+canvas.height = 698 // Fixed height
+// canvas.width = 2124 // Fixed width
+// canvas.height = 1376 // Fixed height
 
 const seaSkyLayerData = {
   l_Sea_Sky: l_Sea_Sky,
@@ -729,7 +731,7 @@ function animate(backgroundCanvas) {
 
   // Render scene
   c.save()
-  c.scale(dpr + 3.9, dpr + 3.9)
+  c.scale(dpr + 1, dpr + 1)
   c.translate(-camera.x, camera.y)
   c.clearRect(0, 0, canvas.width, canvas.height)
   c.drawImage(seaSkyBackgroundCanvas, camera.x * 0.32, 0) // 0.32 is the parallax effect
