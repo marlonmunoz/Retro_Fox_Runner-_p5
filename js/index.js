@@ -778,7 +778,7 @@ function animate(backgroundCanvas) {
   c.restore()
 
   c.save()
-  c.scale(3, 3)
+  c.scale(2, 2)
   
   for (let i = hearts.length - 1; i >= 0; i--) {
     const heart = hearts [i] // this will grab only one sprite and store it into the array
